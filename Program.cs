@@ -4,13 +4,14 @@ using System.Net;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace BWMonitoringApp
+namespace BWMonitoringApp;
+
+internal class Program
 {
-    internal class Program
+    private static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello, World!");
-        }
+        var metricsCollector = new MetricsCollector();
+        metricsCollector.Collect();
+        metricsCollector.PrintMetrics();
     }
 }
