@@ -43,7 +43,7 @@ public class MetricsCollector
         Console.WriteLine($"Available Memory: {availableMemory} MB");
         Console.WriteLine($"Disk Usage: {diskUsage}%");
         Console.WriteLine($"Network Usage: {networkUsage} Bytes/sec");
-        Console.WriteLine($"Total Disk Space: {totalDiskSpace / (1024 * 1024 * 1024)} GB");
+        //Console.WriteLine($"Total Disk Space: {totalDiskSpace / (1024 * 1024 * 1024)} GB");
         Console.WriteLine($"Free Disk Space: {freeDiskSpace / (1024 * 1024 * 1024)} GB");
     }
 
