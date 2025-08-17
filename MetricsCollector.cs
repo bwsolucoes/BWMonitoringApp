@@ -26,8 +26,16 @@ public class MetricsCollector
     private static PerformanceCounter diskCounter = new PerformanceCounter("PhysicalDisk", "% Disk Time", "_Total");
     private static PerformanceCounter networkCounter = new PerformanceCounter("Network Interface", "Bytes Total/sec", GetNetworkInterface());
     
-    public void Collect()
+    public SystemMetrics Collect()
     {
+        return new SystemMetrics
+        {
+            CpuUsage = GetCpuCounter(cpuCounter),
+            AvailableRam = GetRamCounter(ramCounter),
+            DiskUsage = GetDiskUsage(diskCounter),
+            NetworkUsage = GetNetworkUsage(networkCounter),
+            AvailableDisk = GetDiskSpace()
+        };
         cpuUsage = GetCpuCounter(cpuCounter);
         availableMemory = GetRamCounter(ramCounter);
         diskUsage = GetDiskUsage(diskCounter);
