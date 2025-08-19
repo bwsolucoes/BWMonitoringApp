@@ -16,12 +16,16 @@ internal class Program
 
         var registers = db.GetCollection<SystemMetrics>("registros");
         var register = new SystemMetrics();
+        for(int i = 0; i <=5; i++)
+        {
+            SystemMetrics metrics = new SystemMetrics();
+            MetricsCollector metricsCollector = new MetricsCollector();
+            register = metricsCollector.Collect();
 
-        SystemMetrics metrics = new SystemMetrics();
-        MetricsCollector metricsCollector = new MetricsCollector();
-        metricsCollector.Collect();
-        metricsCollector.PrintMetrics();
 
-        registers
+            registers.Insert(register);
+            Thread.Sleep(10000);
+        }
+        
     }
 }

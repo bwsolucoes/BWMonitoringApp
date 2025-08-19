@@ -10,8 +10,8 @@ namespace BWMonitoringApp;
 
 public class MetricsCollector
 {
-    private static string hostname = Dns.GetHostName();
-    private static string username = Environment.UserName;
+    private static readonly string hostname = Dns.GetHostName();
+    private static readonly string username = Environment.UserName;
 
     private static float cpuUsage;
     private static float availableMemory;
@@ -28,19 +28,22 @@ public class MetricsCollector
     
     public SystemMetrics Collect()
     {
-        return new SystemMetrics
-        {
-            CpuUsage = GetCpuCounter(cpuCounter),
-            AvailableRam = GetRamCounter(ramCounter),
-            DiskUsage = GetDiskUsage(diskCounter),
-            NetworkUsage = GetNetworkUsage(networkCounter),
-            AvailableDisk = GetDiskSpace()
-        };
         cpuUsage = GetCpuCounter(cpuCounter);
         availableMemory = GetRamCounter(ramCounter);
         diskUsage = GetDiskUsage(diskCounter);
         networkUsage = GetNetworkUsage(networkCounter);
         freeDiskSpace = GetDiskSpace();
+
+        PrintMetrics();
+        return new SystemMetrics
+        {
+            CpuUsage = cpuUsage,
+            AvailableRam = availableMemory,
+            DiskUsage = diskUsage,
+            NetworkUsage = networkUsage,
+            AvailableDisk = freeDiskSpace,
+            MetricDate = DateTime.Now
+        };
     }
 
     public void PrintMetrics()
