@@ -37,6 +37,8 @@ public class MetricsCollector
         PrintMetrics();
         return new SystemMetrics
         {
+            Hostname = hostname,
+            Username = username,
             CpuUsage = cpuUsage,
             AvailableRam = availableMemory,
             DiskUsage = diskUsage,
@@ -59,7 +61,7 @@ public class MetricsCollector
     }
 
     #region Getters
-    private static string GetNetworkInterface()
+    private static string? GetNetworkInterface()
     {
         var category = new PerformanceCounterCategory("Network Interface");
         string[] instanceNames = category.GetInstanceNames();
