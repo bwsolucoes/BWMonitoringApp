@@ -24,6 +24,7 @@ internal class Program
 
 
             registers.Insert(register);
+            new DatabaseCleanup(registers).PurgeOldMetrics(1);
             Thread.Sleep(10000);
         }
         
