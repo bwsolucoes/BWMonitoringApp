@@ -11,6 +11,8 @@ public class DataSender
 {
     private readonly string _apiUrl;
     private readonly HttpClient _httpClient;
+    private readonly string _apiKey = "";
+    private readonly string _appKey = "";
     public DataSender(string apiUrl)
     {
         _apiUrl = apiUrl;
@@ -29,6 +31,9 @@ public class DataSender
             MetricToObject("monitor.endpoint.system.disk.free", metrics.AvailableDisk, timestamp, tags),
             MetricToObject("monitor.endpoint.system.network.usage", metrics.CpuUsage, timestamp, tags),
         };
+        
+        _httpClient.DefaultRequestHeaders.Add("DD-API-KEY",_apiKey);
+        _httpClient.DefaultRequestHeaders.Add("DD-APP-KEY",_appKey);
 
         string json = JsonConvert.SerializeObject(series);
         StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -41,6 +46,8 @@ public class DataSender
         else
         {
             Console.WriteLine($"Failed to send metrics to Datadog: {response.StatusCode}");
+            Console.WriteLine($"why: {response.ReasonPhrase}");
+            Console.WriteLine(_apiUrl);
         }
     }
 
