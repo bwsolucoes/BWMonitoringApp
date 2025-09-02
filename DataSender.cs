@@ -17,6 +17,8 @@ public class DataSender
     {
         _apiUrl = apiUrl;
         _httpClient = new HttpClient();
+        _httpClient.DefaultRequestHeaders.Add("DD-API-KEY", _apiKey);
+        _httpClient.DefaultRequestHeaders.Add("DD-APP-KEY", _appKey);
     }
 
     public async Task SendToDatadog(SystemMetrics metrics)
@@ -32,10 +34,13 @@ public class DataSender
             MetricToObject("monitor.endpoint.system.network.usage", metrics.CpuUsage, timestamp, tags),
         };
         
-        _httpClient.DefaultRequestHeaders.Add("DD-API-KEY",_apiKey);
-        _httpClient.DefaultRequestHeaders.Add("DD-APP-KEY",_appKey);
+        
+        var payload = new
+        {
+            series
+        };
 
-        string json = JsonConvert.SerializeObject(series);
+        string json = JsonConvert.SerializeObject(payload, Formatting.Indented);
         StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
 
         HttpResponseMessage response = await _httpClient.PostAsync(_apiUrl, content);
@@ -46,8 +51,6 @@ public class DataSender
         else
         {
             Console.WriteLine($"Failed to send metrics to Datadog: {response.StatusCode}");
-            Console.WriteLine($"why: {response.ReasonPhrase}");
-            Console.WriteLine(_apiUrl);
         }
     }
 
@@ -56,7 +59,7 @@ public class DataSender
         return new
         {
             metric = name,
-            points = new[] { timestamp, value },
+            points = new[] {new[] { timestamp, value } },
             type = "gauge",
             tags
         };

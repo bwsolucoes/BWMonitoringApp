@@ -26,7 +26,7 @@ internal class Program
         _datadogApiUrl = $"https://api.datadoghq.com/api/v1/series";
         DataSender _dataSender = new DataSender(_datadogApiUrl);
 
-        for(int i = 0; i <=5; i++)
+        for(int i = 0; i <=10; i++)
         {
             SystemMetrics metrics = new SystemMetrics();
             MetricsCollector metricsCollector = new MetricsCollector();
@@ -34,7 +34,7 @@ internal class Program
 
 
             registers.Insert(register);
-            await _dataSender.SendToDatadog(metrics);
+            await _dataSender.SendToDatadog(register);
 
             new DatabaseCleanup(registers).PurgeOldMetrics(1);
             Thread.Sleep(10000);
