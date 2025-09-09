@@ -1,4 +1,5 @@
 ﻿using LiteDB;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Management;
@@ -19,11 +20,19 @@ internal class Program
         const string databaseName = "MetricsDB";
         using var db = new LiteDatabase(databaseName);
 
-        var registers = db.GetCollection<SystemMetrics>("registros");
-        var register = new SystemMetrics();
+        IConfiguration config = new ConfigurationBuilder().
+                                    AddUserSecrets<Program>().
+                                    Build();
+
+        ConfigInfo configInfo = new ConfigInfo();
+        AuthManager authManager = new AuthManager(configInfo);
+        authManager.GetConfigInfo();
+        
+        ILiteCollection<SystemMetrics> registers = db.GetCollection<SystemMetrics>("registros");
+        SystemMetrics register = new SystemMetrics();
 
         _datadogApiKey = "";
-        _datadogApiUrl = $"https://api.datadoghq.com/api/v1/series";
+        _datadogApiUrl = $"https://app.datadoghq.com/api/v1/series";
         DataSender _dataSender = new DataSender(_datadogApiUrl);
 
         for(int i = 0; i <=10; i++)
@@ -33,11 +42,11 @@ internal class Program
             register = metricsCollector.Collect();
 
 
-            registers.Insert(register);
+            registers.Insert(register); 
             await _dataSender.SendToDatadog(register);
 
             new DatabaseCleanup(registers).PurgeOldMetrics(1);
-            Thread.Sleep(10000);
+            Thread.Sleep(120000);
         }
         
     }

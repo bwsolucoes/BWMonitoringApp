@@ -46,7 +46,7 @@ public class DataSender
         HttpResponseMessage response = await _httpClient.PostAsync(_apiUrl, content);
         if (response.IsSuccessStatusCode)
         {
-            Console.WriteLine("Metrics sent to Datadog successfully.");
+            Console.WriteLine("Metrics sent to Datadog successfully.\n");
         }
         else
         {
