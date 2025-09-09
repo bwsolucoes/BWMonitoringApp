@@ -1,5 +1,6 @@
 ﻿using LiteDB;
 using Microsoft.Extensions.Configuration;
+using DotNetEnv;
 using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Management;
@@ -8,6 +9,7 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DotNetEnv.Configuration;
 
 namespace BWMonitoringApp;
 
@@ -22,10 +24,11 @@ internal class Program
 
         IConfiguration config = new ConfigurationBuilder().
                                     AddUserSecrets<Program>().
+                                    AddDotNetEnv().
                                     Build();
 
         ConfigInfo configInfo = new ConfigInfo();
-        AuthManager authManager = new AuthManager(configInfo);
+        AuthManager authManager = new AuthManager(configInfo, config);
         authManager.GetConfigInfo();
         
         ILiteCollection<SystemMetrics> registers = db.GetCollection<SystemMetrics>("registros");
@@ -33,7 +36,7 @@ internal class Program
 
         _datadogApiKey = "";
         _datadogApiUrl = $"https://app.datadoghq.com/api/v1/series";
-        DataSender _dataSender = new DataSender(_datadogApiUrl);
+        DataSender _dataSender = new DataSender(configInfo);
 
         for(int i = 0; i <=10; i++)
         {

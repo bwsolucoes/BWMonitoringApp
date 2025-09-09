@@ -11,11 +11,16 @@ public class DataSender
 {
     private readonly string _apiUrl;
     private readonly HttpClient _httpClient;
-    private readonly string _apiKey = "";
-    private readonly string _appKey = "";
-    public DataSender(string apiUrl)
+    private readonly string _apiKey;
+    private readonly string _appKey;
+    private readonly ConfigInfo _info;
+    public DataSender(ConfigInfo info)
     {
-        _apiUrl = apiUrl;
+        _info = info;
+
+        _apiKey = info.ApiKey;
+        _appKey = info.AppKey;
+        _apiUrl = $"https://{info.DatadogUrl}/api/v1/series";
         _httpClient = new HttpClient();
         _httpClient.DefaultRequestHeaders.Add("DD-API-KEY", _apiKey);
         _httpClient.DefaultRequestHeaders.Add("DD-APP-KEY", _appKey);
