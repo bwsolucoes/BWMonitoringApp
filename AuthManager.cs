@@ -11,7 +11,9 @@ namespace BWMonitoringApp;
 
 public sealed class AuthManager
 {
-    private static readonly string _envPath = ".env";
+    private static readonly string localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+    private static readonly string appFolder = Path.Combine(localAppData, "BW Endpoint Monitor");
+    private static readonly string _envPath = Path.Combine(appFolder,".env");
 
     private static ConfigInfo _info = new ConfigInfo();
     private static IConfiguration _config;

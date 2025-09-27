@@ -19,8 +19,15 @@ internal class Program
     private static string _datadogApiUrl = "";
     private static async Task Main(string[] args)
     {
+        string localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+        string appFolder = Path.Combine(localAppData, "BW Endpoint Monitor");
+
+        if (!Directory.Exists(appFolder))
+            Directory.CreateDirectory(appFolder);
+        
         const string databaseName = "MetricsDB";
-        using var db = new LiteDatabase(databaseName);
+        string dbPath = Path.Combine(appFolder, databaseName);
+        using var db = new LiteDatabase(dbPath);
 
         IConfiguration config = new ConfigurationBuilder().
                                     AddUserSecrets<Program>().
@@ -38,7 +45,7 @@ internal class Program
         _datadogApiUrl = $"https://app.datadoghq.com/api/v1/series";
         DataSender _dataSender = new DataSender(configInfo);
 
-        for(int i = 0; i <=10; i++)
+        while(true)
         {
             SystemMetrics metrics = new SystemMetrics();
             MetricsCollector metricsCollector = new MetricsCollector();

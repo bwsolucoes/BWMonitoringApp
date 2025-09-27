@@ -18,9 +18,9 @@ public class DataSender
     {
         _info = info;
 
-        _apiKey = info.ApiKey;
-        _appKey = info.AppKey;
-        _apiUrl = $"https://{info.DatadogUrl}/api/v1/series";
+        _apiKey = _info.ApiKey;
+        _appKey = _info.AppKey;
+        _apiUrl = $"https://{_info.DatadogUrl}/api/v1/series";
         _httpClient = new HttpClient();
         _httpClient.DefaultRequestHeaders.Add("DD-API-KEY", _apiKey);
         _httpClient.DefaultRequestHeaders.Add("DD-APP-KEY", _appKey);
@@ -36,7 +36,7 @@ public class DataSender
             MetricToObject("monitor.endpoint.system.memory.available", metrics.AvailableRam, timestamp, tags),
             MetricToObject("monitor.endpoint.system.disk.usage", metrics.DiskUsage, timestamp, tags),
             MetricToObject("monitor.endpoint.system.disk.free", metrics.AvailableDisk, timestamp, tags),
-            MetricToObject("monitor.endpoint.system.network.usage", metrics.CpuUsage, timestamp, tags),
+            MetricToObject("monitor.endpoint.system.network.usage", metrics.NetworkUsage, timestamp, tags),
         };
         
         
@@ -66,7 +66,7 @@ public class DataSender
             metric = name,
             points = new[] {new[] { timestamp, value } },
             type = "gauge",
-            tags
+            tags = tags
         };
     }
 }
