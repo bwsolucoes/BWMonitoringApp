@@ -1,6 +1,6 @@
 # BWMonitoringApp
 
-Uma aplicação leve para a coleta, armazenamento local e envio para o Datadog de métricas
+Uma aplicação leve para a coleta, armazenamento local e envio para o Datadog de métricas de uso da máquina.
 
 --- 
 
@@ -17,7 +17,7 @@ Uma aplicação leve para a coleta, armazenamento local e envio para o Datadog d
 
 ## Visão Geral
 
-BWMonitoringApp é uma aplicação de monitoramento com o objetivo de coletar métricas de uso da máquina do usuário, salvá-las num banco de dados local, e enviá-las para o Datadog via requests HTTP, para a equipe poder monitorar a performance das máquinas. A aplicação tem objetivo de ser leve, e rodar em background, para não prejudicar o usuário
+BWMonitoringApp é uma aplicação de monitoramento com o objetivo de coletar métricas de uso da máquina do usuário, salvá-las num banco de dados local, e enviá-las para o Datadog via requests HTTP, para a equipe poder monitorar a performance das máquinas. A aplicação tem objetivo de ser leve, e rodar em background, para não prejudicar o usuário.
 
 ---
 
