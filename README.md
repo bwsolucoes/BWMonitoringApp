@@ -42,7 +42,7 @@ BWMonitoringApp é uma aplicação de monitoramento com o objetivo de coletar m�
 
 ---
 
-## Instalção
+## Instalação
 
 A aplicação pode ser instalada com a execução do instalador .exe.
 Também pode ser instalada via terminal, fornecendo os dados de configuração. Rodar o comando no diretório do instalador.
