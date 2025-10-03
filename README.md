@@ -47,7 +47,7 @@ BWMonitoringApp é uma aplicação de monitoramento com o objetivo de coletar m�
 A aplicação pode ser instalada com a execução do instalador .exe.
 Também pode ser instalada via terminal, fornecendo os dados de configuração. Rodar o comando no diretório do instalador.
 ```sh
-BW MonitorApp Instaler.exe /silent /APIKEY=YOUR-API-KEY /APPKEY=YOUR-APP-KEY /URL=YOUR-DATADOG-DOMAIN-URK
+BW MonitorApp Instaler.exe /silent /APIKEY=YOUR-API-KEY /APPKEY=YOUR-APP-KEY /URL=YOUR-DATADOG-DOMAIN-URL
 ```
 
 ---
@@ -55,7 +55,7 @@ BW MonitorApp Instaler.exe /silent /APIKEY=YOUR-API-KEY /APPKEY=YOUR-APP-KEY /UR
 ## Configuração
 
 Para o funcionamento da aplicação, é necessário fornecer as seguintes informações do Datadog do usuário: 
-- Chave de Api
+- Chave de API
 - Chave de Aplicação
 - Url do site do Datadog
 Estas informações podem ser fornecidas durante a instalação, em uma página do instalador.
