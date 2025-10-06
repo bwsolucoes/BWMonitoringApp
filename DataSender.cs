@@ -37,6 +37,7 @@ public class DataSender
             MetricToObject("monitor.endpoint.system.disk.usage", metrics.DiskUsage, timestamp, tags),
             MetricToObject("monitor.endpoint.system.disk.free", metrics.AvailableDisk, timestamp, tags),
             MetricToObject("monitor.endpoint.system.network.usage", metrics.NetworkUsage, timestamp, tags),
+            MetricToObject("monitor.endpoint.system.uptime", metrics.Uptime, timestamp, tags),
         };
         
         

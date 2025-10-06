@@ -16,4 +16,5 @@ public class SystemMetrics
     public float AvailableDisk { get; set; }
     public float NetworkUsage { get; set; }
     public DateTime MetricDate { get; set; }
+    public float Uptime { get; set; }
 }

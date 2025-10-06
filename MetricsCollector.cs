@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Management;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ public class MetricsCollector
     private static long totalDiskSpace;
     private static long usedDiskUsage;
     private static long freeDiskSpace;
+    private static float uptime;
 
     private static PerformanceCounter cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
     private static PerformanceCounter ramCounter = new PerformanceCounter("Memory", "Available MBytes");
@@ -33,6 +35,7 @@ public class MetricsCollector
         diskUsage = GetDiskUsage(diskCounter);
         networkUsage = GetNetworkUsage(networkCounter);
         freeDiskSpace = GetDiskSpace();
+        uptime = GetUptime();
 
         PrintMetrics();
         return new SystemMetrics
@@ -44,7 +47,8 @@ public class MetricsCollector
             DiskUsage = diskUsage,
             NetworkUsage = networkUsage,
             AvailableDisk = freeDiskSpace,
-            MetricDate = DateTime.Now
+            MetricDate = DateTime.Now,
+            Uptime = uptime
         };
     }
 
@@ -110,6 +114,15 @@ public class MetricsCollector
     {
         float usage = networkCounter.NextValue();
         return usage;
+    }
+
+    private static float GetUptime()
+    {
+        long ticks = Stopwatch.GetTimestamp();
+        double uptime = ((double)ticks) / Stopwatch.Frequency;
+        return (float)uptime;
+        //TimeSpan uptimeSpan = TimeSpan.FromSeconds(uptime);
+        
     }
     #endregion
 }
