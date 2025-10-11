@@ -11,6 +11,7 @@ public class SystemMetrics
     public string Hostname { get; set; }
     public string Username { get; set; }
     public float CpuUsage { get; set; }
+    public float TotalPhysMemory { get; set; }
     public float AvailableRam { get; set; }
     public float DiskUsage { get; set; }
     public float AvailableDisk { get; set; }

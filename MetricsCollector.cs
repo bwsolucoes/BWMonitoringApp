@@ -6,6 +6,7 @@ using System.Management;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.VisualBasic.Devices;
 
 namespace BWMonitoringApp;
 
@@ -15,6 +16,7 @@ public class MetricsCollector
     private static readonly string username = Environment.UserName;
 
     private static float cpuUsage;
+    private static float totalPhysMemory;
     private static float availableMemory;
     private static float diskUsage;
     private static float networkUsage;
@@ -27,22 +29,24 @@ public class MetricsCollector
     private static PerformanceCounter ramCounter = new PerformanceCounter("Memory", "Available MBytes");
     private static PerformanceCounter diskCounter = new PerformanceCounter("PhysicalDisk", "% Disk Time", "_Total");
     private static PerformanceCounter networkCounter = new PerformanceCounter("Network Interface", "Bytes Total/sec", GetNetworkInterface());
-    
+    private static ComputerInfo computerInfo = new ComputerInfo();
+
     public SystemMetrics Collect()
     {
         cpuUsage = GetCpuCounter(cpuCounter);
         availableMemory = GetRamCounter(ramCounter);
+        totalPhysMemory = GetTotalRam(computerInfo);
         diskUsage = GetDiskUsage(diskCounter);
         networkUsage = GetNetworkUsage(networkCounter);
         freeDiskSpace = GetDiskSpace();
         uptime = GetUptime();
-
         PrintMetrics();
         return new SystemMetrics
         {
             Hostname = hostname,
             Username = username,
             CpuUsage = cpuUsage,
+            TotalPhysMemory = totalPhysMemory,
             AvailableRam = availableMemory,
             DiskUsage = diskUsage,
             NetworkUsage = networkUsage,
@@ -88,6 +92,13 @@ public class MetricsCollector
         float available = ramCounter.NextValue();
 
         return available;
+    }
+
+    private static float GetTotalRam(ComputerInfo ci)
+    {
+        // ulong bla = computerInfo.AvailablePhysicalMemory;
+        ulong physMemory = ci.TotalPhysicalMemory;
+        return (float)physMemory;
     }
 
     private static float GetDiskUsage(PerformanceCounter diskCounter)
