@@ -80,9 +80,14 @@ public class MetricsCollector
 
         return instanceNames.Length > 0 ? instanceNames[0] : null;
     }
+    private static string GetRootDir()
+    {
+        string _rootDir = Path.GetPathRoot(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile));
+        return _rootDir; 
+    }
     private static string? GetInstallationDisk()
     {
-        string? dir = Path.GetPathRoot(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile));
+        string? dir = GetRootDir();
         if (string.IsNullOrEmpty(dir))
             return "_Total";
 
@@ -94,7 +99,6 @@ public class MetricsCollector
         
         if(matchDrive != null)
         {
-            Console.WriteLine($"{matchDrive}");
             return matchDrive;
         }
 
@@ -136,7 +140,10 @@ public class MetricsCollector
 
     private static long GetDiskSpace()
     {
-        DriveInfo driveInfo = new DriveInfo("C");
+        string drive = GetRootDir();
+        string _trimDrive = drive.Trim([':','\\']);
+        Console.WriteLine(_trimDrive);
+        DriveInfo driveInfo = new DriveInfo(_trimDrive);
         long totalDiskSpace = driveInfo.TotalSize;
         long freeDiskSpace = driveInfo.AvailableFreeSpace;
         long usedDiskSpace = totalDiskSpace - freeDiskSpace;
