@@ -15,6 +15,8 @@ public class MetricsCollector
     private static readonly string hostname = Dns.GetHostName();
     private static readonly string username = Environment.UserName;
 
+    private static readonly string? _mainDisk = GetInstallationDisk() ?? "_Total";
+
     private static float cpuUsage;
     private static float totalPhysMemory;
     private static float availableMemory;
@@ -27,7 +29,7 @@ public class MetricsCollector
 
     private static PerformanceCounter cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
     private static PerformanceCounter ramCounter = new PerformanceCounter("Memory", "Available MBytes");
-    private static PerformanceCounter diskCounter = new PerformanceCounter("PhysicalDisk", "% Disk Time", "_Total");
+    private static PerformanceCounter diskCounter = new PerformanceCounter("PhysicalDisk", "% Disk Time", _mainDisk);
     private static PerformanceCounter networkCounter = new PerformanceCounter("Network Interface", "Bytes Total/sec", GetNetworkInterface());
     private static ComputerInfo computerInfo = new ComputerInfo();
 
@@ -61,11 +63,13 @@ public class MetricsCollector
         Console.WriteLine($"Hostname: {hostname}");
         Console.WriteLine($"Username: {username}");
         Console.WriteLine($"CPU Usage: {cpuUsage}%");
+        Console.WriteLine($"Total Physical Memory: {totalPhysMemory / (1024 * 1024)} MB");
         Console.WriteLine($"Available Memory: {availableMemory} MB");
         Console.WriteLine($"Disk Usage: {diskUsage}%");
         Console.WriteLine($"Network Usage: {networkUsage} Bytes/sec");
         //Console.WriteLine($"Total Disk Space: {totalDiskSpace / (1024 * 1024 * 1024)} GB");
         Console.WriteLine($"Free Disk Space: {freeDiskSpace / (1024 * 1024 * 1024)} GB");
+        Console.WriteLine($"Machine Uptime: {uptime / 86400} days");
     }
 
     #region Getters
@@ -76,7 +80,26 @@ public class MetricsCollector
 
         return instanceNames.Length > 0 ? instanceNames[0] : null;
     }
+    private static string? GetInstallationDisk()
+    {
+        string? dir = Path.GetPathRoot(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile));
+        if (string.IsNullOrEmpty(dir))
+            return "_Total";
 
+        string drive = dir.TrimEnd('\\');
+
+        PerformanceCounterCategory category = new PerformanceCounterCategory("PhysicalDisk");
+        string[]? instances = category.GetInstanceNames();
+        string matchDrive = instances.FirstOrDefault(inst => inst.Contains(drive, StringComparison.OrdinalIgnoreCase));
+        
+        if(matchDrive != null)
+        {
+            Console.WriteLine($"{matchDrive}");
+            return matchDrive;
+        }
+
+        return "_Total";
+    }
     private static float GetCpuCounter(PerformanceCounter cpuCounter)
     {
         float usage;
