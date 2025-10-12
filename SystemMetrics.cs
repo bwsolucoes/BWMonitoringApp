@@ -14,6 +14,8 @@ public class SystemMetrics
     public float TotalPhysMemory { get; set; }
     public float AvailableRam { get; set; }
     public float DiskUsage { get; set; }
+    public float DiskReads { get; set; }
+    public float DiskWrites { get; set; }
     public float AvailableDisk { get; set; }
     public float NetworkUsage { get; set; }
     public DateTime MetricDate { get; set; }

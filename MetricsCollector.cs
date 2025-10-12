@@ -21,6 +21,8 @@ public class MetricsCollector
     private static float totalPhysMemory;
     private static float availableMemory;
     private static float diskUsage;
+    private static float diskReads;
+    private static float diskWrites;
     private static float networkUsage;
     private static long totalDiskSpace;
     private static long usedDiskUsage;
@@ -30,6 +32,8 @@ public class MetricsCollector
     private static PerformanceCounter cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
     private static PerformanceCounter ramCounter = new PerformanceCounter("Memory", "Available MBytes");
     private static PerformanceCounter diskCounter = new PerformanceCounter("PhysicalDisk", "% Disk Time", _mainDisk);
+    private static PerformanceCounter diskReadCounter = new PerformanceCounter("PhysicalDisk", "Disk Reads/sec", _mainDisk);
+    private static PerformanceCounter diskWriteCounter = new PerformanceCounter("PhysicalDisk", "Disk Writes/sec", _mainDisk);
     private static PerformanceCounter networkCounter = new PerformanceCounter("Network Interface", "Bytes Total/sec", GetNetworkInterface());
     private static ComputerInfo computerInfo = new ComputerInfo();
 
@@ -39,6 +43,8 @@ public class MetricsCollector
         availableMemory = GetRamCounter(ramCounter);
         totalPhysMemory = GetTotalRam(computerInfo);
         diskUsage = GetDiskUsage(diskCounter);
+        diskReads = GetDiskReads(diskReadCounter);
+        diskWrites = GetDiskWrites(diskWriteCounter);
         networkUsage = GetNetworkUsage(networkCounter);
         freeDiskSpace = GetDiskSpace();
         uptime = GetUptime();
@@ -51,6 +57,8 @@ public class MetricsCollector
             TotalPhysMemory = totalPhysMemory,
             AvailableRam = availableMemory,
             DiskUsage = diskUsage,
+            DiskReads = diskReads,
+            DiskWrites = diskWrites,
             NetworkUsage = networkUsage,
             AvailableDisk = freeDiskSpace,
             MetricDate = DateTime.Now,
@@ -66,6 +74,9 @@ public class MetricsCollector
         Console.WriteLine($"Total Physical Memory: {totalPhysMemory / (1024 * 1024)} MB");
         Console.WriteLine($"Available Memory: {availableMemory} MB");
         Console.WriteLine($"Disk Usage: {diskUsage}%");
+        Console.WriteLine($"Disk Reads: {diskReads}");
+        Console.WriteLine($"Disk Writes: {diskWrites}");
+        Console.WriteLine($"Disk Read/Write: {diskReads / diskWrites}");
         Console.WriteLine($"Network Usage: {networkUsage} Bytes/sec");
         //Console.WriteLine($"Total Disk Space: {totalDiskSpace / (1024 * 1024 * 1024)} GB");
         Console.WriteLine($"Free Disk Space: {freeDiskSpace / (1024 * 1024 * 1024)} GB");
@@ -103,6 +114,20 @@ public class MetricsCollector
         }
 
         return "_Total";
+    }
+    private static float GetDiskReads(PerformanceCounter readCounter)
+    {
+        readCounter.NextValue();
+        Thread.Sleep(1000);
+        float reads = readCounter.NextValue();
+        return reads;
+    }
+    private static float GetDiskWrites(PerformanceCounter writeCounter)
+    {
+        writeCounter.NextValue();
+        Thread.Sleep(1000);
+        float writes = writeCounter.NextValue();
+        return writes;
     }
     private static float GetCpuCounter(PerformanceCounter cpuCounter)
     {
@@ -142,7 +167,6 @@ public class MetricsCollector
     {
         string drive = GetRootDir();
         string _trimDrive = drive.Trim([':','\\']);
-        Console.WriteLine(_trimDrive);
         DriveInfo driveInfo = new DriveInfo(_trimDrive);
         long totalDiskSpace = driveInfo.TotalSize;
         long freeDiskSpace = driveInfo.AvailableFreeSpace;
