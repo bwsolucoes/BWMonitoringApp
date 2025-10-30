@@ -30,14 +30,16 @@ public sealed class AuthManager
         {
             File.Create(_envPath).Close();
         }
-        DotNetEnv.Env.Load();
+        Env.TraversePath().Load(_envPath);
+        
     }
 
     public ConfigInfo GetConfigInfo()
     {
         FileExists();
 
-        _info.ApiKey = _config["Datadog:ApiKey"] ?? DotNetEnv.Env.GetString("API_KEY") ?? SaveKeyOnEnv("API_KEY");
+        //_info.ApiKey = _config["Datadog:ApiKey"] ?? DotNetEnv.Env.GetString("API_KEY") ?? SaveKeyOnEnv("API_KEY");
+        _info.ApiKey = DotNetEnv.Env.GetString("API_KEY") ?? SaveKeyOnEnv("API_KEY");
         _info.AppKey = _config["Datadog:AppKey"] ?? DotNetEnv.Env.GetString("APP_KEY") ?? SaveKeyOnEnv("APP_KEY");
         _info.DatadogUrl = _config["Datadog:Url"] ?? DotNetEnv.Env.GetString("DD_URL") ??  SaveKeyOnEnv("DD_URL");
 

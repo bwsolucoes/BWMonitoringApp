@@ -7,6 +7,7 @@
 #define MyAppURL "https://www.example.com/"
 #define MyAppExeName "BWMonitoringApp.exe"
 
+
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
@@ -32,7 +33,7 @@ DisableProgramGroupPage=yes
 ; Uncomment the following line to run in non administrative install mode (install for current user only).
 ;PrivilegesRequired=lowest
 OutputDir=C:\Users\gusta\Installers\BWMonitorApp
-OutputBaseFilename=BW MonitorApp Installer
+OutputBaseFilename=BWMonitorAppInstaller
 SolidCompression=yes
 WizardStyle=modern
 
@@ -49,6 +50,9 @@ Source: "C:\Users\gusta\source\repos\BWMonitoringApp\BWMonitoringApp\bin\Release
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 [Dirs]
 Name: "{localappdata}\BW Endpoint Monitor";
+[Registry]
+Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Run"; ValueType: string; ValueName: "{#MyAppName}"; ValueData: """{app}\{#MyAppExeName}"""; Flags : uninsdeletevalue
+
 
 [Icons]
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
@@ -60,11 +64,13 @@ Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChang
 [Code]
 var
   ApiPage: TInputQueryWizardPage;
+  WizardUsed: Boolean;
 procedure InitializeWizard();
 var
   AppKey, ApiKey, DDUrl: String;
   
 begin
+    WizardUsed := False;
     ApiPage := CreateInputQueryPage(wpWelcome,'User Info', 'User Info', 'User Info');
     ApiPage.Add('&API KEY:',False);
     ApiPage.Add('&APP KEY:',False);
@@ -83,6 +89,8 @@ var
     
     if CurPageID = ApiPage.ID then
       begin
+        WizardUsed := True;
+        
         apiKey := Trim(ApiPage.Values[0]);
         appKey := Trim(ApiPage.Values[1]);
         ddUrl := Trim(ApiPage.Values[2]);
@@ -94,4 +102,32 @@ var
           False
         );
       end;
+end;
+procedure WriteConfigFile();
+var
+  ConfigPath, ApiKey, AppKey, DDUrl: String;
+  ConfigContent: String;
+  begin
+    ConfigPath := ExpandConstant('{localappdata}\BW Endpoint Monitor\.env');
+    ApiKey := ExpandConstant('{param:APIKEY}');
+    AppKey := ExpandConstant('{param:APPKEY}');
+    DDUrl := ExpandConstant('{param:DDURL}');
+    
+    ConfigContent := '';
+    if ApiKey <> '' then
+      ConfigContent := ConfigContent + 'APIKEY=' + ApiKey + #13#10;
+    if AppKey <> '' then
+      ConfigContent := ConfigContent + 'APPKEY=' + ApiKey + #13#10;
+    if DDUrl <> '' then
+      ConfigContent := ConfigContent + 'DDURL=' + ApiKey + #13#10;
+      
+    SaveStringToFile(ConfigPath, ConfigContent, False);  
+  end;
+  
+ procedure CurStepChanged(CurStep: TSetupStep);
+ begin
+  if (CurStep = ssPostInstall) and (not WizardUsed) then
+  begin
+    WriteConfigFile();
+  end;
 end;

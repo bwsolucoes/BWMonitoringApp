@@ -5,6 +5,7 @@
 	<TargetFramework>net8.0-windows</TargetFramework>
 	<UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+	
     <Nullable>enable</Nullable>
     <UserSecretsId>90a2e948-b272-4191-a601-cb94e305355f</UserSecretsId>
   </PropertyGroup>

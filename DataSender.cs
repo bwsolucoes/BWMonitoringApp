@@ -34,6 +34,7 @@ public class DataSender
         {
             MetricToObject("monitor.endpoint.system.cpu.usage", metrics.CpuUsage, timestamp, tags),
             MetricToObject("monitor.endpoint.system.memory.available", metrics.AvailableRam, timestamp, tags),
+            MetricToObject("monitor.endpoint.system.memory.total", metrics.TotalPhysMemory, timestamp, tags),
             MetricToObject("monitor.endpoint.system.disk.usage", metrics.DiskUsage, timestamp, tags),
             MetricToObject("monitor.endpoint.system.disk.reads", metrics.DiskReads, timestamp, tags),
             MetricToObject("monitor.endpoint.system.disk.writes", metrics.DiskWrites, timestamp, tags),
