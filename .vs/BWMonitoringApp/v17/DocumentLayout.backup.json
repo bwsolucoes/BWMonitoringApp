@@ -1,0 +1,143 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\gusta\\source\\repos\\BWMonitoringApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{92A6C6E5-6C74-4B1E-BA1D-1EE397C4713A}|BWMonitoringApp\\BWMonitoringApp.csproj|c:\\users\\gusta\\source\\repos\\bwmonitoringapp\\bwmonitoringapp\\datasender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{92A6C6E5-6C74-4B1E-BA1D-1EE397C4713A}|BWMonitoringApp\\BWMonitoringApp.csproj|solutionrelative:bwmonitoringapp\\datasender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{92A6C6E5-6C74-4B1E-BA1D-1EE397C4713A}|BWMonitoringApp\\BWMonitoringApp.csproj|c:\\users\\gusta\\source\\repos\\bwmonitoringapp\\bwmonitoringapp\\metricscollector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{92A6C6E5-6C74-4B1E-BA1D-1EE397C4713A}|BWMonitoringApp\\BWMonitoringApp.csproj|solutionrelative:bwmonitoringapp\\metricscollector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{92A6C6E5-6C74-4B1E-BA1D-1EE397C4713A}|BWMonitoringApp\\BWMonitoringApp.csproj|c:\\users\\gusta\\source\\repos\\bwmonitoringapp\\bwmonitoringapp\\bwmonitoringapp.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{92A6C6E5-6C74-4B1E-BA1D-1EE397C4713A}|BWMonitoringApp\\BWMonitoringApp.csproj|solutionrelative:bwmonitoringapp\\bwmonitoringapp.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{92A6C6E5-6C74-4B1E-BA1D-1EE397C4713A}|BWMonitoringApp\\BWMonitoringApp.csproj|c:\\users\\gusta\\source\\repos\\bwmonitoringapp\\bwmonitoringapp\\authmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{92A6C6E5-6C74-4B1E-BA1D-1EE397C4713A}|BWMonitoringApp\\BWMonitoringApp.csproj|solutionrelative:bwmonitoringapp\\authmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{92A6C6E5-6C74-4B1E-BA1D-1EE397C4713A}|BWMonitoringApp\\BWMonitoringApp.csproj|c:\\users\\gusta\\source\\repos\\bwmonitoringapp\\bwmonitoringapp\\configinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{92A6C6E5-6C74-4B1E-BA1D-1EE397C4713A}|BWMonitoringApp\\BWMonitoringApp.csproj|solutionrelative:bwmonitoringapp\\configinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{92A6C6E5-6C74-4B1E-BA1D-1EE397C4713A}|BWMonitoringApp\\BWMonitoringApp.csproj|c:\\users\\gusta\\source\\repos\\bwmonitoringapp\\bwmonitoringapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{92A6C6E5-6C74-4B1E-BA1D-1EE397C4713A}|BWMonitoringApp\\BWMonitoringApp.csproj|solutionrelative:bwmonitoringapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{92A6C6E5-6C74-4B1E-BA1D-1EE397C4713A}|BWMonitoringApp\\BWMonitoringApp.csproj|c:\\users\\gusta\\source\\repos\\bwmonitoringapp\\bwmonitoringapp\\systemmetrics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{92A6C6E5-6C74-4B1E-BA1D-1EE397C4713A}|BWMonitoringApp\\BWMonitoringApp.csproj|solutionrelative:bwmonitoringapp\\systemmetrics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AuthManager.cs",
+              "DocumentMoniker": "C:\\Users\\gusta\\source\\repos\\BWMonitoringApp\\BWMonitoringApp\\AuthManager.cs",
+              "RelativeDocumentMoniker": "BWMonitoringApp\\AuthManager.cs",
+              "ToolTip": "C:\\Users\\gusta\\source\\repos\\BWMonitoringApp\\BWMonitoringApp\\AuthManager.cs",
+              "RelativeToolTip": "BWMonitoringApp\\AuthManager.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAUwCQAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-23T15:13:37.363Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ConfigInfo.cs",
+              "DocumentMoniker": "C:\\Users\\gusta\\source\\repos\\BWMonitoringApp\\BWMonitoringApp\\ConfigInfo.cs",
+              "RelativeDocumentMoniker": "BWMonitoringApp\\ConfigInfo.cs",
+              "ToolTip": "C:\\Users\\gusta\\source\\repos\\BWMonitoringApp\\BWMonitoringApp\\ConfigInfo.cs",
+              "RelativeToolTip": "BWMonitoringApp\\ConfigInfo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-23T15:13:35.329Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MetricsCollector.cs",
+              "DocumentMoniker": "C:\\Users\\gusta\\source\\repos\\BWMonitoringApp\\BWMonitoringApp\\MetricsCollector.cs",
+              "RelativeDocumentMoniker": "BWMonitoringApp\\MetricsCollector.cs",
+              "ToolTip": "C:\\Users\\gusta\\source\\repos\\BWMonitoringApp\\BWMonitoringApp\\MetricsCollector.cs",
+              "RelativeToolTip": "BWMonitoringApp\\MetricsCollector.cs",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAkwKgAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-12T21:18:20.929Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BWMonitoringApp.csproj",
+              "DocumentMoniker": "C:\\Users\\gusta\\source\\repos\\BWMonitoringApp\\BWMonitoringApp\\BWMonitoringApp.csproj",
+              "RelativeDocumentMoniker": "BWMonitoringApp\\BWMonitoringApp.csproj",
+              "ToolTip": "C:\\Users\\gusta\\source\\repos\\BWMonitoringApp\\BWMonitoringApp\\BWMonitoringApp.csproj",
+              "RelativeToolTip": "BWMonitoringApp\\BWMonitoringApp.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-10-03T15:22:21.757Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\gusta\\source\\repos\\BWMonitoringApp\\BWMonitoringApp\\Program.cs",
+              "RelativeDocumentMoniker": "BWMonitoringApp\\Program.cs",
+              "ToolTip": "C:\\Users\\gusta\\source\\repos\\BWMonitoringApp\\BWMonitoringApp\\Program.cs",
+              "RelativeToolTip": "BWMonitoringApp\\Program.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAkAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-12T20:35:35.651Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DataSender.cs",
+              "DocumentMoniker": "C:\\Users\\gusta\\source\\repos\\BWMonitoringApp\\BWMonitoringApp\\DataSender.cs",
+              "RelativeDocumentMoniker": "BWMonitoringApp\\DataSender.cs",
+              "ToolTip": "C:\\Users\\gusta\\source\\repos\\BWMonitoringApp\\BWMonitoringApp\\DataSender.cs",
+              "RelativeToolTip": "BWMonitoringApp\\DataSender.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAqwCgAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-25T11:20:48.122Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "SystemMetrics.cs",
+              "DocumentMoniker": "C:\\Users\\gusta\\source\\repos\\BWMonitoringApp\\BWMonitoringApp\\SystemMetrics.cs",
+              "RelativeDocumentMoniker": "BWMonitoringApp\\SystemMetrics.cs",
+              "ToolTip": "C:\\Users\\gusta\\source\\repos\\BWMonitoringApp\\BWMonitoringApp\\SystemMetrics.cs",
+              "RelativeToolTip": "BWMonitoringApp\\SystemMetrics.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAwwAoAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-16T15:33:25.748Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
